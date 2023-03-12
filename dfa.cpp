@@ -27,7 +27,7 @@ int main()
     }
 
     int matrice[nrStari+2][nrLitere+2];
-    for(int  i=0; i<nrStari; i++)
+    for(int i=0; i<nrStari; i++)
         for(int j=0; j<nrLitere; j++)
             matrice[i][j] = -1;
 
@@ -48,11 +48,11 @@ int main()
     bool acceptat = true;
     int n = strlen(cuvant), stare = 0, drum[n+1];
     drum[0] = 0;
-    for(int i=0; i<n; i++)
+    for(int i=1; i<=n; i++)
     {
-        if(matrice[stare][litere[cuvant[i]]] != -1)
+        if(matrice[stare][litere[cuvant[i-1]]] != -1)
         {
-            stare = matrice[stare][litere[cuvant[i]]];
+            stare = matrice[stare][litere[cuvant[i-1]]];
             drum[i] = stare;
         }
         else
@@ -76,7 +76,7 @@ int main()
     if(acceptat == true)
     {
         cout << "Cuvantul este acceptat" << "\n" << "Drum: ";
-        for(int i=0; i<n; i++)
+        for(int i=0; i<=n; i++)
             cout << drum[i] << " ";
     }
     else
