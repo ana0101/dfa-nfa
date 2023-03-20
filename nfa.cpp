@@ -3,7 +3,6 @@
 #include <cstring>
 #include <map>
 #include <vector>
-#include <deque>
 using namespace std;
 
 ifstream fin1("graf.in");
