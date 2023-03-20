@@ -51,8 +51,9 @@ void parcurgere(int nrLit)
 
 int main()
 {
-    int nrStari;
+    int nrStari, stareInitiala;
     fin1 >> nrStari;
+    fin1 >> stareInitiala;
     fin1 >> nrStariFinale;
     for(int i=0; i<nrStariFinale; i++)
         fin1 >> stariFinale[i];
@@ -82,7 +83,7 @@ int main()
 
     fin2 >> cuvant;
 
-    drum[0] = 0;
+    drum[0] = stareInitiala;
     parcurgere(1);
 
     if(acceptat == false)

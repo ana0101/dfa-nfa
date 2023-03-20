@@ -9,8 +9,9 @@ ifstream fin2("cuvant.in");
 
 int main()
 {
-    int nrStari, nrStariFinale;
+    int nrStari, nrStariFinale, stareInitiala;
     fin1 >> nrStari;
+    fin1 >> stareInitiala;
     fin1 >> nrStariFinale;
     int stariFinale[nrStariFinale+1];
     for(int i=0; i<nrStariFinale; i++)
@@ -46,8 +47,8 @@ int main()
     fin2 >> cuvant;
     
     bool acceptat = true;
-    int n = strlen(cuvant), stare = 0, drum[n+1];
-    drum[0] = 0;
+    int n = strlen(cuvant), stare = stareInitiala, drum[n+1];
+    drum[0] = stareInitiala;
     for(int i=1; i<=n; i++)
     {
         if(matrice[stare][litere[cuvant[i-1]]] != -1)
