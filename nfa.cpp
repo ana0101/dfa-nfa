@@ -69,9 +69,7 @@ int main()
 
     int s1, s2;
     while(fin1 >> s1 >> litera >> s2)
-    {
         matrice[s1][litere[litera]].push_back(s2);
-    }
 
     /*for(int i=0; i<nrStari; i++)
     {
@@ -82,12 +80,28 @@ int main()
     }*/
 
     fin2 >> cuvant;
+    cout << cuvant << "\n";
 
-    drum[0] = stareInitiala;
-    parcurgere(1);
+    if(strcmp(cuvant, "") == 0)
+    {
+        acceptat = false;
+        for(int i=0; i<nrStariFinale; i++)
+            if(stareInitiala == stariFinale[i])
+                acceptat = true;
 
-    if(acceptat == false)
-        cout << "Cuvantul nu este acceptat";
+        if(acceptat == true)
+            cout << "Cuvantul este acceptat\n" << "Drum: " << stareInitiala;
+        else    
+            cout << "Cuvantul nu este acceptat";
+    }
+    else
+    {
+        drum[0] = stareInitiala;
+        parcurgere(1);
+
+        if(acceptat == false)
+            cout << "Cuvantul nu este acceptat";
+    }
 
     fin1.close();
     fin2.close();

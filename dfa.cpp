@@ -6,6 +6,7 @@ using namespace std;
 
 ifstream fin1("graf.in");
 ifstream fin2("cuvant.in");
+char cuvant[101];
 
 int main()
 {
@@ -43,45 +44,60 @@ int main()
         cout << "\n";
     }*/
 
-    char cuvant[101];
     fin2 >> cuvant;
     
     bool acceptat = true;
     int n = strlen(cuvant), stare = stareInitiala, drum[n+1];
     drum[0] = stareInitiala;
-    for(int i=1; i<=n; i++)
-    {
-        if(matrice[stare][litere[cuvant[i-1]]] != -1)
-        {
-            stare = matrice[stare][litere[cuvant[i-1]]];
-            drum[i] = stare;
-        }
-        else
-        {
-            acceptat = false;
-            break;
-        }
-    }
-
-    if(acceptat == true)
+    
+    if(strcmp(cuvant, "") == 0)
     {
         acceptat = false;
         for(int i=0; i<nrStariFinale; i++)
-            if(stariFinale[i] == stare)
-            {
+            if(stareInitiala == stariFinale[i])
                 acceptat = true;
-                break;
-            }
-    }
 
-    if(acceptat == true)
-    {
-        cout << "Cuvantul este acceptat" << "\n" << "Drum: ";
-        for(int i=0; i<=n; i++)
-            cout << drum[i] << " ";
+        if(acceptat == true)
+            cout << "Cuvantul este acceptat\n" << "Drum: " << stareInitiala;
+        else    
+            cout << "Cuvantul nu este acceptat";
     }
     else
-        cout << "Cuvantul nu este acceptat";
+    {
+        for(int i=1; i<=n; i++)
+        {
+            if(matrice[stare][litere[cuvant[i-1]]] != -1)
+            {
+                stare = matrice[stare][litere[cuvant[i-1]]];
+                drum[i] = stare;
+            }
+            else
+            {
+                acceptat = false;
+                break;
+            }
+        }
+
+        if(acceptat == true)
+        {
+            acceptat = false;
+            for(int i=0; i<nrStariFinale; i++)
+                if(stariFinale[i] == stare)
+                {
+                    acceptat = true;
+                    break;
+                }
+        }
+
+        if(acceptat == true)
+        {
+            cout << "Cuvantul este acceptat" << "\n" << "Drum: ";
+            for(int i=0; i<=n; i++)
+                cout << drum[i] << " ";
+        }
+        else
+            cout << "Cuvantul nu este acceptat";
+    }
 
     fin1.close();
     fin2.close();
