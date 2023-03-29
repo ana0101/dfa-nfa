@@ -7,6 +7,8 @@ using namespace std;
 
 ifstream fin1("graf.in");
 ifstream fin2("cuvant.in");
+ifstream in1("graf2.in");
+ifstream in2("cuvant2.in");
 
 int drum[101], nrStariFinale, stariFinale[11];
 char cuvant[101];
@@ -51,23 +53,23 @@ void parcurgere(int nrLit)
 int main()
 {
     int nrStari, stareInitiala;
-    fin1 >> nrStari;
-    fin1 >> stareInitiala;
-    fin1 >> nrStariFinale;
+    in1 >> nrStari;
+    in1 >> stareInitiala;
+    in1 >> nrStariFinale;
     for(int i=0; i<nrStariFinale; i++)
-        fin1 >> stariFinale[i];
+        in1 >> stariFinale[i];
 
     int nrLitere;
-    fin1 >> nrLitere;
+    in1 >> nrLitere;
     char litera;
     for(int i=0; i<nrLitere; i++)
     {
-        fin1 >> litera;
+        in1 >> litera;
         litere[litera] = i;
     }
 
     int s1, s2;
-    while(fin1 >> s1 >> litera >> s2)
+    while(in1 >> s1 >> litera >> s2)
         matrice[s1][litere[litera]].push_back(s2);
 
     /*for(int i=0; i<nrStari; i++)
@@ -78,8 +80,7 @@ int main()
         cout << "\n";
     }*/
 
-    fin2 >> cuvant;
-    cout << cuvant << "\n";
+    in2 >> cuvant;
 
     if(strcmp(cuvant, "") == 0)
     {
@@ -102,7 +103,7 @@ int main()
             cout << "Cuvantul nu este acceptat";
     }
 
-    fin1.close();
+    in1.close();
     fin2.close();
 
     return 0;
