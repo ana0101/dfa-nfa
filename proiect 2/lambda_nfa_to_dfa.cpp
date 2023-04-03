@@ -12,12 +12,13 @@ ofstream fout("dfa.out");
 int nr_stari_lnfa, nr_stari_dfa, nr_stari_finale_lnfa, nr_stari_finale_dfa, stare_initiala_lnfa;
 vector <int> stari_finale_lnfa, stari_finale_dfa;
 char cuvant[101];
-vector <int> lnfa[10][5], lnfa2[10][5], dfa[10][5];
+vector <int> lnfa[10][5], nfa[10][5], dfa[10][5];
 map <char, int> litere;
 map <int, char> litere2;
 vector <int> lambda_inchideri[10];
 vector <vector <int>> stari_dfa;
 
+// verifica daca doi vectori sunt egali
 bool egale(vector <int> v1, vector <int> v2)
 {
     if (v1.size() != v2.size())
@@ -31,6 +32,7 @@ bool egale(vector <int> v1, vector <int> v2)
     }
 }
 
+// verifica daca o valoare se afla intr-un vector
 bool apartine(vector <int> v, int x)
 {
     for (int i = 0; i < v.size(); i++)
@@ -41,10 +43,12 @@ bool apartine(vector <int> v, int x)
 
 void calcul_lambda_inchideri(int stare)
 {
+    // parcurge toate starile in care se ajunge cu lambda din starea curenta
     for (int i = 0; i < lnfa[stare][litere['l']].size(); i++)
     {
         int stareNoua = lnfa[stare][litere['l']][i];
         bool ok = apartine(lambda_inchideri[stare], stareNoua);
+        // daca starea nu se afla deja in lambda inchiderea starii
         if (!ok)
         {
             lambda_inchideri[stare].push_back(stareNoua);
@@ -55,6 +59,7 @@ void calcul_lambda_inchideri(int stare)
         }
     }
 }
+
 
 int main()
 {
@@ -96,6 +101,7 @@ int main()
     // }
     // cout << "\n\n";
 
+    // punem starea insasi in lambda inchiderea starii
     for (int stare = 0; stare < nr_stari_lnfa; stare++)
         lambda_inchideri[stare].push_back(stare);
 
@@ -110,21 +116,25 @@ int main()
     //     cout << "\n";
     // }
 
+    // parcurge toate starile
     for (int stare = 0; stare < nr_stari_lnfa; stare++)
     {
+        // parcurge starile din lambda inchiderea starii
         for (int i = 0; i < lambda_inchideri[stare].size(); i++)
         {
             int stare2 = lambda_inchideri[stare][i];
             for (int j = 0; j < nr_litere; j++)
             {
+                // parcurge toate starile in care se ajunge cu o anumita litera din starea din lambda inchidere
                 for (int k = 0; k < lnfa[stare2][j].size(); k++)
                 {
                     int stare3 = lnfa[stare2][j][k];
+                    // parcurge toate starile din lambda inchiderea starii de mai sus
                     for (int l = 0; l < lambda_inchideri[stare3].size(); l++)
                     {
                         int stare4 = lambda_inchideri[stare3][l];
-                        if (!apartine(lnfa2[stare][j], stare4))
-                            lnfa2[stare][j].push_back(stare4);
+                        if (!apartine(nfa[stare][j], stare4))
+                            nfa[stare][j].push_back(stare4);
                     }
                 }
             }
@@ -133,14 +143,14 @@ int main()
 
     for (int i = 0; i < nr_stari_lnfa; i++)
         for (int j = 0; j < nr_litere; j++)
-            sort(lnfa2[i][j].begin(), lnfa2[i][j].end());
+            sort(nfa[i][j].begin(), nfa[i][j].end());
 
     // for (int i = 0; i < nr_stari_lnfa; i++)
     // {
     //     for (int j = 0; j < nr_litere; j++)
     //     {
-    //         for (int k = 0; k < lnfa2[i][j].size(); k++)
-    //             cout << lnfa2[i][j][k] << " ";
+    //         for (int k = 0; k < nfa[i][j].size(); k++)
+    //             cout << nfa[i][j][k] << " ";
     //         cout << "    ";
     //     }
     //     cout << "\n";
@@ -150,6 +160,7 @@ int main()
     stari_dfa.push_back(lambda_inchideri[stare_initiala_lnfa]);
     int nr_stari_dfa = stari_dfa.size();
 
+    // vedem cate stari sunt in dfa
     for (int i = 0; i < nr_stari_dfa; i++)
     {
         for (int j = 0; j < nr_litere; j++)
@@ -158,9 +169,9 @@ int main()
             for (int k = 0; k < stari_dfa[i].size(); k++)
             {
                 int stare = stari_dfa[i][k];
-                for (int l = 0; l < lnfa2[stare][j].size(); l++)
+                for (int l = 0; l < nfa[stare][j].size(); l++)
                 {
-                    int stare_noua = lnfa2[stare][j][l];
+                    int stare_noua = nfa[stare][j][l];
                     if (!apartine(stari, stare_noua))
                         stari.push_back(stare_noua);
                 }
