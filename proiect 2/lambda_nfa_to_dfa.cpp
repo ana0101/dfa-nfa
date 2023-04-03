@@ -200,8 +200,8 @@ int main()
     // }
 
     // afisam numarul de stari pentru dfa si starea initiala
-    fout << stari_dfa.size() << "\n";
-    fout << 0 << "\n";
+    fout << "nr stari: " << stari_dfa.size() << "\n";
+    fout << "stare initiala: " << 0 << "\n";
 
     // aflam starile finale pentru dfa
     for (int i = 0; i < nr_stari_dfa; i++)
@@ -218,12 +218,14 @@ int main()
     }
 
     // afisam starile finale pentru dfa 
-    fout << stari_finale_dfa.size() << "\n";
+    fout << "nr stari finale: "<< stari_finale_dfa.size() << "\n";
+    fout << "stari finale: ";
     for (int i = 0; i < stari_finale_dfa.size(); i++)
         fout << stari_finale_dfa[i] << " ";
     fout << "\n";
 
     // afisam tranzitiile pentru dfa
+    fout << "tranzitii: \n";
     for (int i = 0; i < nr_stari_dfa; i++)
     {
         for (int j = 0; j < nr_litere; j++)
