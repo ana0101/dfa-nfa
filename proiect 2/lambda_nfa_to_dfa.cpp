@@ -6,7 +6,7 @@
 #include <algorithm>
 using namespace std;
 
-ifstream fin("lambda_nfa.in");
+ifstream fin("lambda_nfa4.in");
 ofstream fout("dfa.out");
 
 int nr_stari_lnfa, nr_stari_dfa, nr_stari_finale_lnfa, nr_stari_finale_dfa, stare_initiala_lnfa;
@@ -186,7 +186,7 @@ int main()
                     dfa[i][j].push_back(k);
                 }
             // daca nu apartine o adaugam
-            if (!apartine)
+            if (!apartine && stari.size() > 0)
             {
                 stari_dfa.push_back(stari);
                 nr_stari_dfa++;
@@ -194,6 +194,8 @@ int main()
             }
         }
     }
+
+    // cout << nr_stari_dfa << "\n";
 
     // for (int i = 0; i < stari_dfa.size(); i++)
     // {
@@ -241,9 +243,12 @@ int main()
     {
         for (int j = 0; j < nr_litere; j++)
         {
-            fout << i << " ";
-            fout << litere2[j] << " ";
-            fout << dfa[i][j][0] << "\n";
+            if (dfa[i][j].size() > 0)
+            {
+                fout << i << " ";
+                fout << litere2[j] << " ";
+                fout << dfa[i][j][0] << "\n";
+            }
         }
     }
 
