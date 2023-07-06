@@ -12,10 +12,10 @@ ofstream fout("dfa.out");
 int nr_stari_lnfa, nr_stari_dfa, nr_stari_finale_lnfa, nr_stari_finale_dfa, stare_initiala_lnfa;
 vector <int> stari_finale_lnfa, stari_finale_dfa;
 char cuvant[101];
-vector <int> lnfa[10][5], nfa[10][5], dfa[10][5];
+vector <int> lnfa[15][5], nfa[15][5], dfa[15][5];
 map <char, int> litere;
 map <int, char> litere2;
-vector <int> lambda_inchideri[10];
+vector <int> lambda_inchideri[105];
 vector <vector <int>> stari_dfa;
 
 // verifica daca doi vectori sunt egali
@@ -197,12 +197,12 @@ int main()
 
     // cout << nr_stari_dfa << "\n";
 
-    // for (int i = 0; i < stari_dfa.size(); i++)
-    // {
-    //     for (int j = 0; j < stari_dfa[i].size(); j++)
-    //         cout << stari_dfa[i][j];
-    //     cout << "\n";
-    // }
+    for (int i = 0; i < stari_dfa.size(); i++)
+    {
+        for (int j = 0; j < stari_dfa[i].size(); j++)
+            cout << stari_dfa[i][j] << " ";
+        cout << "\n";
+    }
 
     // cout << "\n";
     // for (int i = 0; i < nr_stari_dfa; i++)

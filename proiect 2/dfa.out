@@ -1,10 +1,15 @@
-3
-0
-3
-0 1 2 
+nr stari: 8
+stare initiala: 0
+nr stari finale: 4
+stari finale: 0 4 5 7 
+tranzitii: 
 0 a 1
-0 b 2
-1 a 1
-1 b 2
-2 a 2
-2 b 2
+0 c 2
+1 b 3
+1 c 4
+2 a 5
+2 b 6
+3 a 7
+6 c 7
+7 a 1
+7 c 2
