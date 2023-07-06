@@ -7,10 +7,10 @@ Project 2 - A program that transforms a given lambda-nfa into a dfa
 Project 3 - A program that performs a dfa minimization
 
 Input files structure:
-number of states
-initial state
-number of final states
-final states
-number of letters
-letters
+number of states, 
+initial state, 
+number of final states, 
+final states, 
+number of letters, 
+letters, 
 transitions: state1 letter state2
