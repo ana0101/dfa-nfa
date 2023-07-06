@@ -1,13 +1,16 @@
-Proiect 1 LFA
-Program care implementeaza un dfa + nfa
-dfa.cpp implementeaza un dfa
-nfa.cpp implementeaza un nfa, dar poate fi folosit si pentru un dfa
+This repo contains my projects for my Formal Languages and Automata class
 
-Structura fisier de intrare graf.in:
-nr stari
-stare initiala
-nr stari finale
-stari finale
-nr litere
-litere
-tranzitii de forma: stare1 litera stare2
+Project 1 - A program that checks if a given word is accepted by a given dfa or nfa; dfa.cpp works only for a dfa, nfa.cpp works for a nfa and for a dfa
+
+Project 2 - A program that transforms a given lambda-nfa into a dfa
+
+Project 3 - A program that performs a dfa minimization
+
+Input files structure:
+number of states
+initial state
+number of final states
+final states
+number of letters
+letters
+transitions: state1 letter state2
